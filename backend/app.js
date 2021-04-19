@@ -1,12 +1,8 @@
 const express = require('express');
 const app = express();
-// app.use(express.bodyParser());
-//declaration du body parser qu'on a installé a traver npm i --save body-parser
-const bodyParser = require('body-parser');
-// Parse URL-encoded bodies (as sent by HTML forms)
-// app.use(express.urlencoded());
 
-// Parse JSON bodies (as sent by API clients)
+const bodyParser = require('body-parser');
+
 app.use(express.json());
 const path = require('path');
 app.use(bodyParser.json());
@@ -14,10 +10,7 @@ app.use(bodyParser.urlencoded({ extended: true }));
 
 const mongoose = require('mongoose');
 const Provider = require('./model/provider')
-//connect application to db named soccerDB et on change test par notre db "soccerDB"
 mongoose.connect('mongodb://localhost:27017/providerDB', { useNewUrlParser: true, useUnifiedTopology: true });
-
-// Security configuration
 app.use((req, res, next) => {
     res.setHeader("Access-Control-Allow-Origin", "*");
     res.setHeader(
@@ -32,16 +25,19 @@ app.use((req, res, next) => {
 });
 app.post('/provider/post', (req, res) => {
     console.log('here in adding', req.body);
-    console.log('here in test', req.body.contacts.address.subdivision);
-    url = req.protocol + '://' + req.get('host');
-
+    // console.log('here in test', req.body.contacts.address.subdivision);
+    // url = req.protocol + '://' + req.get('host');
+    console.log('here in test 22211111', req.body.service);
+    console.log('here in test 22211111', req.body.rating);
     var provider = new Provider({
         contacts: req.body.contacts,
         opening_days_hours: req.body.opening_days_hours,
-        service: req.body.service,
+        services: req.body.services,
+        rating: req.body.rating,
         is_auto_assignable: req.body.is_auto_assignable
     });
-    console.log('here in test 222', req.body.contacts.address.subdivision);
+    console.log('here in test 222', req.body.service);
+    console.log('here in test 222', req.body.rating);
     provider.save().then(
         console.log('here in test 33333333', req.body.contacts.address.subdivision),
         result => {

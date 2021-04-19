@@ -1,8 +1,6 @@
 import { Component, Input, OnInit } from '@angular/core';
 import { FormArray, FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms';
-// import { Contact } from 'src/app/shared/model/contact.model';
-// import { DaysHours } from 'src/app/shared/model/dayHours.model';
-import { DayOfTheWeek } from 'src/app/shared/model/dayOfTheWeek.model';
+import { DayOfTheWeek, FileType2LabelMapping } from 'src/app/shared/model/dayOfTheWeek.ennum';
 import { ProviderService } from 'src/app/shared/service/provider.service';
 
 @Component({
@@ -11,10 +9,9 @@ import { ProviderService } from 'src/app/shared/service/provider.service';
   styleUrls: ['./create.component.css']
 })
 export class CreateComponent implements OnInit {
-  // @Input() contact: Contact;
   providerForm: FormGroup;
-  days:any= DayOfTheWeek;
-  test: any=DayOfTheWeek;
+  public FileType2LabelMapping = FileType2LabelMapping;
+  public fileTypes = Object.values(DayOfTheWeek);
 
   constructor(
     private formBuilder: FormBuilder,
@@ -22,13 +19,6 @@ export class CreateComponent implements OnInit {
   ) { }
 
   ngOnInit() {
-    // console.log("this.test.length");
-    // console.log(this.test.toA);
-    // for (let index = 0; index < this.test.length; index++) {
-    //   const element = this.test[index];
-    //   console.log(element);
-      
-    // }
     this.providerForm = this.formBuilder.group({
       // provider_id: ['',Validators.required,Validators.maxLength(100)],
       contacts: this.formBuilder.group({

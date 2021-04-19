@@ -20,7 +20,7 @@ const providerSchema = new mongoose.Schema({
         },
         hour_periods: String,
     },
-    service: String,
+    services: String,
     is_auto_assignable: Boolean,
     rating:String
     

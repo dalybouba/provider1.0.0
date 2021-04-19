@@ -63,9 +63,10 @@
                             <select class="form-control form-control-sm" aria-label="Default select example"
                                 name="day_of_week" formControlName='day_of_week'>
                                 <option selected></option>
-                                <!-- <option *ngFor="let day of test">
-                                    {{day}}
-                                </option> -->
+                                <option *ngFor="let fileType of fileTypes"
+                                [value]="fileType">
+                          {{FileType2LabelMapping[fileType]}}
+                        </option>
                             </select>
                         </div>
                         <div class="form-group col-lg-2">
