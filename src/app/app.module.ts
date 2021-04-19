@@ -2,6 +2,7 @@ import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
+import { HttpClientModule } from '@angular/common/http';
 import { ProviderModule } from './provider/provider.module';
 
 @NgModule({
@@ -11,6 +12,7 @@ import { ProviderModule } from './provider/provider.module';
   imports: [
     BrowserModule,
     AppRoutingModule,
+    HttpClientModule,
     ProviderModule
   ],
   providers: [],
