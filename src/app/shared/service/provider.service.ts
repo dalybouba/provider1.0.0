@@ -27,13 +27,18 @@ export class ProviderService {
               return res;
           }));}
   
-  // getProviderById(id: string) {
-  //   return this.httpClient.get<{ provider: any }>(`${this.providerUrl}/displayProvider/${id}`);
-  // }
-  // editProvider(provider: any) {
-  //   return this.httpClient.put(`${this.providerUrl}/updateProvider/${provider._id}`, provider);
+  getProviderById(id: string):Observable<Provider> {
+    console.log(id)
+    return this.httpClient.get<Provider>(`${this.providerUrl}/displayProvider/${id}`);
+  }
+  editProvider(provider: any) {
+    console.log(provider)
+    return this.httpClient.put(`${this.providerUrl}/updateProvider/${provider.provider._id}`, provider);
 
-  // }
+  }
+  delete(id: string) {
+    return this.httpClient.delete(`${this.providerUrl}/deleteProvider/${id}`);
+  }
 
 }
 

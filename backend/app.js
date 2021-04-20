@@ -19,7 +19,7 @@ app.use((req, res, next) => {
     );
     res.setHeader(
         "Access-Control-Allow-Methods",
-        "GET, POST, DELETE, OPTIONS, PATCH, PUT"
+        "GET, POST, DELETE, PUT, OPTIONS, PATCH"
     );
     next();
 });
@@ -87,11 +87,11 @@ app.delete('/deleteProvider/:id', (req, res) => {
 
 app.get('/displayProvider/:id', (req, res) => {
     console.log('here in get', req.params.id);
-    Theme.findOne({ _id: req.params.id }).then(
+    Provider.findOne({ _id: req.params.id }).then(
         data => {
             if (data) {
                 res.status(200).json({
-                    theme: data
+                    provider: data
                 })
             }
         }
@@ -99,18 +99,23 @@ app.get('/displayProvider/:id', (req, res) => {
 })
 
 
-app.put('/updateProvider/:id', (req, res) => {
-    console.log("here in edit", req.params.id);
+app.put('/updateProvider/:id', (req, res , next) => {
+    console.log('here in edit', req.params.id);
+    console.log('here in edit', req.body);
+
     const provider = new Provider({
-        _id: req.body._id,
+        id: req.body.id,
         contacts: req.body.contacts,
         opening_days_hours: req.body.opening_days_hours,
         service: req.body.service,
         is_auto_assignable: req.body.is_auto_assignable
     });
-    Provider.update({ _id: req.params.id }, provider).then(
+    Provider.updateOne({ id: req.params.id }, {$set:provider}).then(
+        
         result => {
             if (result) {
+                console.log("",req.params.id )
+                console.log("test9999",result)
                 res.status(200).json({
                     message: 'updated successfully'
                 })

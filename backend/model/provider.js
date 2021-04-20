@@ -4,7 +4,7 @@ const providerSchema = new mongoose.Schema({
     contacts: {
         type: String,
         address: {
-            street_adress: String,
+            street_address: String,
             subdivision: String,
             postal_code: String,
             locality: String,
